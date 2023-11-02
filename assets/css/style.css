@@ -26,6 +26,11 @@ button {
 .answerButton {
     display: none;
 }
+#status {
+    display: none;
+    border-top: 3px solid black;
+    text-align: left;
+}
 button:hover {
     box-shadow: 5px 5px 7px black;
 }

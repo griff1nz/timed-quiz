@@ -1,17 +1,19 @@
 var startButton = document.getElementById("start-button");
 var goAway = document.getElementById("go-away");
 var question = document.getElementById("question");
-var buttons = document.querySelectorAll("answerButton");
+var buttons = document.querySelector(".answerButton");
 var answer1 = document.getElementById("op1")
 var answer2 = document.getElementById("op2")
 var answer3 = document.getElementById("op3")
 var answer4 = document.getElementById("op4")
+var statuss = document.getElementById("status");
 var buttonArr = [answer1, answer2, answer3, answer4];
 console.log(buttonArr[0]);
 var answersDiv = document.getElementById("answers");
 var timer = document.getElementById("time");
 var questionArr = ["What is a bird?"];
 var answerArr = ["Drone", "Dinosaur", "Deez", "Your mom"];
+var correctAnswerArr = ["Drone"];
 var quizOver = 0;
 var secondsLeft = 60;
 var correctAnswer = "";
@@ -32,6 +34,12 @@ function goQuiz() {
             console.log(buttonArr[i]);
             buttonArr[i].textContent = answerArr[i];
         }
+        buttons.addEventListener("click", function() {
+            if (EventTarget.textContent = correctAnswerArr[0]) {
+                statuss.setAttribute("style", "display:inline");
+                statuss.textContent = "lmfao";
+            }
+        })
 }
 
 startButton.addEventListener("click", function() {
