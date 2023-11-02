@@ -2,9 +2,14 @@ body {
     line-height: 150%;
     margin: 5px;
     text-align: center;
+    background-color: lightblue;
 }
 header {
     text-align: left;
+    background-color: lightskyblue;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 #question {
     font-size: 200%;
@@ -16,7 +21,18 @@ button {
     padding: 10px;
     border: 1px solid red;
     border-radius: 25px;
+    margin-bottom: 5px;
+}
+.answerButton {
+    display: none;
 }
 button:hover {
     box-shadow: 5px 5px 7px black;
+}
+#answers {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    margin: auto;
+    align-content: center;
 }
