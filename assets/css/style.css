@@ -27,7 +27,7 @@ button {
     display: none;
 }
 #status {
-    display: none;
+    /* display: none; */
     border-top: 3px solid black;
     text-align: left;
 }
