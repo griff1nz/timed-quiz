@@ -6,7 +6,7 @@ var answer2 = document.getElementById("op2");
 var answer3 = document.getElementById("op3");
 var answer4 = document.getElementById("op4");
 var statuss = document.getElementById("status");
-var functionArray = [question, question1, question2, question3, question4]; //https://stackoverflow.com/questions/4908378/javascript-array-of-functions
+var functionArray = [questionn, decoyCall, questionnn, decoyCall, questionnnn, decoyCall, questionnnnn, decoyCall, decoyCall, decoyCall,  endQuiz, decoyCall, decoyCall, decoyCall, decoyCall]; //https://stackoverflow.com/questions/4908378/javascript-array-of-functions
 var correctAnswer;
 var buttonArr = [answer1, answer2, answer3, answer4];
 var answersDiv = document.getElementById("answers");
@@ -15,6 +15,10 @@ var answerArr;
 var quizOver = 0;
 var secondsLeft = 60;
 var questionCount = 0;
+
+function decoyCall() {
+    console.log("The check() function runs an extra time for each question, so I put a bunch of decoy calls in the array to prevent errors. Might fix later");
+}
 
 function timerStart() {
     goAway.setAttribute("style", "display:none");
@@ -44,31 +48,22 @@ function check(answerToCheck, theAnswer) {
     if (answerToCheck === theAnswer) {
         statuss.textContent = "Right!";
         display();
-        if (questionCount < 5) {
-            functionArray[questionCount]()
-        }
-        else {
-            endQuiz();
-        }
+        functionArray.shift()(); //This function runs an extra time for each question, so I put a bunch of decoy calls in the array to prevent errors. Might fix later
     }
     else {
         statuss.textContent = "Wrong!";
         display();
-        if (questionCount < 5) {
-            functionArray[questionCount]();
-        }
-        else {
-            endQuiz();
-        }
+        functionArray.shift()();
     }
 }
 
 function endQuiz() {
     question.textContent = "LMFAO!!!!";
+    answersDiv.innerHTML = "";
 }
 
 function firstQuestion() {
-    questionCount++;
+    
     question.textContent = "What does HTML stand for?";
     answerArr = ["HyperText Markup Language", "High-Temp Meat Loaf", "Home Tool Markup Language", "Hyper Text Making Links"];
     correctAnswer = "HyperText Markup Language";
@@ -85,8 +80,8 @@ function firstQuestion() {
        });
     }
 }
-function question1() {
-    questionCount++;
+function questionn() {
+   
     question.textContent = "What the heck?";
     answerArr = ["HyperText Markup Language", "High-Temp Meat Loaf", "Home Tool Markup Language", "Hyper Text Making Links"];
     correctAnswer = "HyperText Markup Language";
@@ -103,9 +98,9 @@ function question1() {
        });
     }
 }
-function question2() {
-    questionCount++;
-    question.textContent = "What the heck?";
+function questionnn() {
+    
+    question.textContent = "What the heck??";
     answerArr = ["HyperText Markup Language", "High-Temp Meat Loaf", "Home Tool Markup Language", "Hyper Text Making Links"];
     correctAnswer = "HyperText Markup Language";
     for (var i = 0; i < 4; i++) {
@@ -121,8 +116,7 @@ function question2() {
        });
     }
 }
-function question3() {
-    questionCount++;
+function questionnnn() {
     question.textContent = "What the heck???";
     answerArr = ["HyperText Markup Language", "High-Temp Meat Loaf", "Home Tool Markup Language", "Hyper Text Making Links"];
     correctAnswer = "HyperText Markup Language";
@@ -139,8 +133,8 @@ function question3() {
        });
     }
 }
-function question4() {
-    questionCount++;
+function questionnnnn() {
+    
     question.textContent = "What the heck????";
     answerArr = ["HyperText Markup Language", "High-Temp Meat Loaf", "Home Tool Markup Language", "Hyper Text Making Links"];
     correctAnswer = "HyperText Markup Language";
