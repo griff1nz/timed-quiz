@@ -1,12 +1,15 @@
 var startButton = document.getElementById("start-button");
 var goAway = document.getElementById("go-away");
 var question = document.getElementById("question");
-var answer1 = document.getElementById("op1");
-var answer2 = document.getElementById("op2");
-var answer3 = document.getElementById("op3");
-var answer4 = document.getElementById("op4");
-var statuss = document.getElementById("status");
-var functionArray = [questionn, decoyCall, questionnn, decoyCall, questionnnn, decoyCall, questionnnnn, decoyCall, decoyCall, decoyCall,  endQuiz, decoyCall, decoyCall, decoyCall, decoyCall]; //https://stackoverflow.com/questions/4908378/javascript-array-of-functions
+var answer1 = document.createElement("button");
+var answer2 = document.createElement("button");
+var answer3 = document.createElement("button");
+var answer4 = document.createElement("button");
+var statuss = document.getElementById("rightorwrong");
+var functionArr = [questionn, questionnn, questionnnn, questionnnnn, endQuiz];
+var answersCorrect = 0;
+var checkIndex = 0;
+var theScore = document.getElementById("score");
 var correctAnswer;
 var buttonArr = [answer1, answer2, answer3, answer4];
 var answersDiv = document.getElementById("answers");
@@ -16,9 +19,6 @@ var quizOver = 0;
 var secondsLeft = 60;
 var questionCount = 0;
 
-function decoyCall() {
-    console.log("The check() function runs an extra time for each question, so I put a bunch of decoy calls in the array to prevent errors. Might fix later");
-}
 
 function timerStart() {
     goAway.setAttribute("style", "display:none");
@@ -33,7 +33,7 @@ function timerStart() {
 }
 function display() {
     seconds = 1;
-    statuss.setAttribute("style", "display:inline");
+    statuss.setAttribute("style", "display: flex, width: 50%%, margin: 0 25% 0 25%, align-content: center, border-top: 3px solid black");
     var displayTimeout = setInterval(function() {
         seconds--;
         if (seconds === 0) {
@@ -44,22 +44,41 @@ function display() {
 
 }
 
-function check(answerToCheck, theAnswer) {
-    if (answerToCheck === theAnswer) {
+function check(number) {
+    var dataToCheck = buttonArr[number].getAttribute('data-boolean');
+    if (dataToCheck === 'true') {
         statuss.textContent = "Right!";
+        answersCorrect++;
         display();
-        functionArray.shift()(); //This function runs an extra time for each question, so I put a bunch of decoy calls in the array to prevent errors. Might fix later
+        for (var i = 0; i < 4; i++) {
+            buttonArr[i].remove();
+        }
+        functionArr.shift() ();
+        
     }
     else {
         statuss.textContent = "Wrong!";
         display();
-        functionArray.shift()();
+        secondsLeft -= 10;
+        for (var i = 0; i < 4; i++) {
+            buttonArr[i].remove();
+        }
+        
+        functionArr.shift() ();
     }
 }
 
 function endQuiz() {
-    question.textContent = "LMFAO!!!!";
+    question.textContent = "Congrats! Your high score is " + answersCorrect;
     answersDiv.innerHTML = "";
+}
+for (var i = 0; i < 4; i++) {
+    var dataState = buttonArr[i].getAttribute("data-boolean");
+   buttonArr[i].addEventListener("click", function() {
+    check(checkIndex);
+    
+   });
+   checkIndex++;
 }
 
 function firstQuestion() {
@@ -71,14 +90,15 @@ function firstQuestion() {
         var randomNum = Math.floor(Math.random() * answerArr.length)
         var randomAns = answerArr[randomNum];
         buttonArr[i].textContent = randomAns;
+        buttonArr[i].setAttribute("data-boolean", "false");
+        if (randomAns === correctAnswer) {
+            buttonArr[i].setAttribute("data-boolean", "true")
+        }
+        answersDiv.appendChild(buttonArr[i]);
         answerArr.splice(randomNum, 1);
     }
-    for (var i = 0; i < 4; i++) {
-        const what = buttonArr[i].textContent; //It took me an embarrassingly long time to figure out that using a var instead of a const would allow every instance of "what" to be modified, so I had ot use const in order to prevent that from happening. 
-       buttonArr[i].addEventListener("click", function() {
-        check(what, correctAnswer)
-       });
-    }
+    
+
 }
 function questionn() {
    
@@ -89,13 +109,12 @@ function questionn() {
         var randomNum = Math.floor(Math.random() * answerArr.length)
         var randomAns = answerArr[randomNum];
         buttonArr[i].textContent = randomAns;
+        buttonArr[i].setAttribute("data-boolean", "false");
+        if (randomAns === correctAnswer) {
+            buttonArr[i].setAttribute("data-boolean", "true");
+        }
+        answersDiv.appendChild(buttonArr[i]);
         answerArr.splice(randomNum, 1);
-    }
-    for (var i = 0; i < 4; i++) {
-        const what1 = buttonArr[i].textContent;
-       buttonArr[i].addEventListener("click", function() {
-        check(what1, correctAnswer)
-       });
     }
 }
 function questionnn() {
@@ -107,13 +126,12 @@ function questionnn() {
         var randomNum = Math.floor(Math.random() * answerArr.length)
         var randomAns = answerArr[randomNum];
         buttonArr[i].textContent = randomAns;
+        buttonArr[i].setAttribute("data-boolean", "false");
+        if (randomAns === correctAnswer) {
+            buttonArr[i].setAttribute("data-boolean", "true");
+        }
+        answersDiv.appendChild(buttonArr[i]);
         answerArr.splice(randomNum, 1);
-    }
-    for (var i = 0; i < 4; i++) {
-        const what2 = buttonArr[i].textContent;
-       buttonArr[i].addEventListener("click", function() {
-        check(what2, correctAnswer)
-       });
     }
 }
 function questionnnn() {
@@ -124,13 +142,12 @@ function questionnnn() {
         var randomNum = Math.floor(Math.random() * answerArr.length)
         var randomAns = answerArr[randomNum];
         buttonArr[i].textContent = randomAns;
+        buttonArr[i].setAttribute("data-boolean", "false");
+        if (randomAns === correctAnswer) {
+            buttonArr[i].setAttribute("data-boolean", "true");
+        }
+        answersDiv.appendChild(buttonArr[i]);
         answerArr.splice(randomNum, 1);
-    }
-    for (var i = 0; i < 4; i++) {
-        const what3 = buttonArr[i].textContent;
-       buttonArr[i].addEventListener("click", function() {
-        check(what3, correctAnswer)
-       });
     }
 }
 function questionnnnn() {
@@ -142,13 +159,12 @@ function questionnnnn() {
         var randomNum = Math.floor(Math.random() * answerArr.length)
         var randomAns = answerArr[randomNum];
         buttonArr[i].textContent = randomAns;
+        buttonArr[i].setAttribute("data-boolean", "false");
+        if (randomAns === correctAnswer) {
+            buttonArr[i].setAttribute("data-boolean", "true");
+        }
+        answersDiv.appendChild(buttonArr[i]);
         answerArr.splice(randomNum, 1);
-    }
-    for (var i = 0; i < 4; i++) {
-        const what4 = buttonArr[i].textContent;
-       buttonArr[i].addEventListener("click", function() {
-        check(what4, correctAnswer)
-       });
     }
 }
 
@@ -161,4 +177,4 @@ startButton.addEventListener("click", function() {
     answer3.setAttribute("style", "display:flex");
     answer4.setAttribute("style", "display:flex");
     timerStart();
-})
+});

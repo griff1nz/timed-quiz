@@ -28,7 +28,6 @@ button {
 }
 #status {
     /* display: none; */
-    border-top: 3px solid black;
     text-align: left;
 }
 button:hover {
@@ -40,4 +39,11 @@ button:hover {
     width: 25%;
     margin: auto;
     align-content: center;
+}
+#rightorwrong {
+    display: flex;
+    width: 50%%;
+    margin: 0 25% 0 25%;
+    align-content: center;
+    border-top: 3px solid black;
 }
