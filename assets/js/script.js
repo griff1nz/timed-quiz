@@ -1,10 +1,12 @@
 var startButton = document.getElementById("start-button");
 var goAway = document.getElementById("go-away");
 var question = document.getElementById("question");
+//creates buttons for answers
 var answer1 = document.createElement("button");
 var answer2 = document.createElement("button");
 var answer3 = document.createElement("button");
 var answer4 = document.createElement("button");
+//shows if the answer is right or wrong
 var statuss = document.getElementById("rightorwrong");
 var functionArr = [questionn, questionnn, questionnnn, questionnnnn, endQuiz];
 var answersCorrect = 0;
@@ -15,9 +17,7 @@ var buttonArr = [answer1, answer2, answer3, answer4];
 var answersDiv = document.getElementById("answers");
 var timer = document.getElementById("time");
 var answerArr;
-var quizOver = 0;
-var secondsLeft = 60;
-var questionCount = 0;
+var secondsLeft = 1;
 
 
 function timerStart() {
@@ -26,7 +26,8 @@ function timerStart() {
         secondsLeft--;
         timer.textContent = "Seconds left: " + secondsLeft;
         if (secondsLeft === 0) {
-            quizOver++;
+            clearInterval(quiz);
+            endQuiz();
         }
     }, 1000);
     firstQuestion();       
@@ -45,6 +46,7 @@ function display() {
 }
 
 function check(number) {
+    console.log(buttonArr[0]);
     var dataToCheck = buttonArr[number].getAttribute('data-boolean');
     if (dataToCheck === 'true') {
         statuss.textContent = "Right!";
@@ -73,12 +75,12 @@ function endQuiz() {
     answersDiv.innerHTML = "";
 }
 for (var i = 0; i < 4; i++) {
-    var dataState = buttonArr[i].getAttribute("data-boolean");
+    const index = i;
    buttonArr[i].addEventListener("click", function() {
-    check(checkIndex);
+    check(index);
     
    });
-   checkIndex++;
+   
 }
 
 function firstQuestion() {
