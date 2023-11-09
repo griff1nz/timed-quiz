@@ -16,8 +16,15 @@ var correctAnswer;
 var buttonArr = [answer1, answer2, answer3, answer4];
 var answersDiv = document.getElementById("answers");
 var timer = document.getElementById("time");
+var highScore = localStorage.getItem("highScore");
+if (highScore === null) {
+    highScore = 0;
+}
+else {
+    highScore = parseInt(highScore);
+}
 var answerArr;
-var secondsLeft = 1;
+var secondsLeft = 60;
 
 
 function timerStart() {
@@ -25,7 +32,7 @@ function timerStart() {
     var quiz = setInterval(function() {
         secondsLeft--;
         timer.textContent = "Seconds left: " + secondsLeft;
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(quiz);
             endQuiz();
         }
@@ -71,8 +78,23 @@ function check(number) {
 }
 
 function endQuiz() {
-    question.textContent = "Congrats! Your high score is " + answersCorrect;
+    question.textContent = "Congrats! Your score is " + answersCorrect + "!";
     answersDiv.innerHTML = "";
+    if (answersCorrect > highScore) {
+        highScore = answersCorrect;
+        localStorage.setItem("highScore", highScore);
+        question.textContent += "\n You set a new high score! Enter your initials:"
+        
+    }
+    question.textContent += "\Enter your initials:"
+    answersDiv.appendChild(document.createElement("input"));
+    var inputButton = document.createElement("button");
+    inputButton.textContent = "Submit";
+    inputButton.setAttribute("style", "margin-top:10px");
+    inputButton.addEventListener("click", function() {
+
+    });
+    answersDiv.appendChild(inputButton);
 }
 for (var i = 0; i < 4; i++) {
     const index = i;
