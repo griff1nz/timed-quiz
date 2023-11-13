@@ -32,14 +32,15 @@ else {
 var answerArr;
 var secondsLeft = 60;
 
-function displayHighScores() {
+//Displays high score when clicked
+function displayHighScore() {
     var highScoreDisplay = document.createElement("p");
     highScoreDisplay.textContent = initials + ": " + highScore;
     document.getElementById("footer").appendChild(highScoreDisplay);
 }
 
 viewScore.addEventListener("click", function() {
-    displayHighScores();
+    displayHighScore();
 })
 
 function timerStart() {
