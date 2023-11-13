@@ -27,7 +27,7 @@ button {
     display: none;
 }
 #status {
-    /* display: none; */
+    display: none;
     text-align: left;
 }
 button:hover {
@@ -46,4 +46,10 @@ button:hover {
     margin: 0 25% 0 25%;
     align-content: center;
     border-top: 3px solid black;
+}
+#answersDiv p {
+    margin-bottom: 10px;
+}
+footer {
+    margin-top: 20px;
 }
